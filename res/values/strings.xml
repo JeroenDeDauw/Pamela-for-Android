@@ -2,4 +2,5 @@
 <resources>
     <string name="hello">Hello World, Pamela!</string>
     <string name="app_name">Pamela for Android</string>
+<string name="refresh">Refresh</string>
 </resources>
