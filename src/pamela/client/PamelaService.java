@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<!--
+/*
 	Copyright 2010 by Jeroen De Dauw
 
     This file is part of Pamela for Android.
@@ -17,11 +15,12 @@
 
     You should have received a copy of the GNU General Public License
     along with this code.  If not, see <http://www.gnu.org/licenses/>.
--->
+*/
 
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:padding="10dp"
-    android:textSize="16sp" >
-</TextView>
+package pamela.client;
+
+public class PamelaService {
+
+	
+	
+}

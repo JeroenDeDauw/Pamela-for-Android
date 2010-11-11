@@ -1,0 +1,19 @@
+This file contains the release notes of Pamela for Android.
+For more info see http://0x20.be/Pamela_for_Android
+
+== Version 0.3 ==
+2010-11-1x
+
+* 
+
+== Version 0.2 ==
+2010-11-11
+
+* Added tab interface.
+* Added hsbxl occupants list.
+* Removed redundant library.
+
+== Version 0.1 ==
+2010-11-11
+
+* Initial release displaying the 0x20 occupants in a list with a refresh button.

@@ -1,0 +1,12 @@
+This is the about file of Pamela for Android.
+For more info see http://0x20.be/Pamela_for_Android
+
+== About ==
+
+Pamela for Android is a simple Android application that displays lists
+of activate devices at a space using the Pamela web service. More info
+on the pamela can be found at http://hackerspace.be/Pamela.
+
+This application is released on the Android market place under the name
+"Pamela client" and can be downloaded for free. The source code can
+be found on github at https://github.com/JeroenDeDauw/Pamela-for-Android.
