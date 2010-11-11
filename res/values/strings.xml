@@ -29,4 +29,8 @@
 <string name="name">Name</string>
 <string name="listrefreshed">List refreshed</string>
 <string name="search">Search</string>
+<string name="confirmremove">Are you sure you want to remove this list?</string>
+<string name="yes">Yes</string>
+<string name="no">No</string>
+
 </resources>

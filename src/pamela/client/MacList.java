@@ -31,7 +31,9 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.util.EntityUtils;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -46,7 +48,8 @@ public class MacList extends ListActivity {
 	
     /** Called when the activity is first created. */
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
        super.onCreate(savedInstanceState);
        Intent intent = getIntent();
        Bundle extras = intent.getExtras();
@@ -55,13 +58,15 @@ public class MacList extends ListActivity {
        this.showList();
     }
     
-    protected void showList() {
+    protected void showList()
+    {
     	setListAdapter(new ArrayAdapter<String>(this, R.layout.macaddress, this.getMacs()));
     }
     
-    protected void refreshList() {
+    protected void refreshList()
+    {
     	showList();
-    	Toast.makeText(this, "@string/listrefreshed", Toast.LENGTH_LONG);
+    	Toast.makeText(this, R.string.listrefreshed, Toast.LENGTH_SHORT).show();
     }
     
     protected List<String> getMacs() {
@@ -111,7 +116,7 @@ public class MacList extends ListActivity {
 	        	this.refreshList();
 	        	return true;
 	        case R.id.btnSearch:
-	        	
+	        	this.onSearchRequested();
 	        	return true;
 	        case R.id.btnAdd:
 	        	
@@ -120,11 +125,31 @@ public class MacList extends ListActivity {
 	        	
 	        	return true;
 	        case R.id.btnRemove:
-	        	
+	        	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	        	builder.setMessage(R.string.confirmremove)
+	        	       .setCancelable(false)
+	        	       .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+	        	           public void onClick(DialogInterface dialog, int id) {
+	        	        	   //MacList.this.
+	        	           }
+	        	       })
+	        	       .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+	        	           public void onClick(DialogInterface dialog, int id) {
+	        	                dialog.cancel();
+	        	           }
+	        	       });
+	        	AlertDialog alert = builder.create();
+	        	alert.show();
 	        	return true;	        	
 	        default:
 	            return super.onOptionsItemSelected(item);
         }
     }   
+    
+    @Override
+    public boolean onSearchRequested() {
+    	// TODO Auto-generated method stub
+    	return super.onSearchRequested();
+    }
     
 }
