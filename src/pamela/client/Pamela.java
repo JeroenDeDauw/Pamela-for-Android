@@ -22,6 +22,7 @@ package pamela.client;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ViewGroup;
 import android.widget.TabHost;
 
 public class Pamela extends TabActivity {
@@ -29,7 +30,7 @@ public class Pamela extends TabActivity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.main);
-
+	    
 	    addTab( "0x20", "http://www.0x20.be/pam/macs" );
 	    addTab( "hsbxl", "http://hackerspace.be/pam/macs" );
 	}
@@ -52,7 +53,10 @@ public class Pamela extends TabActivity {
 	    	.setIndicator(name)
 	    	.setContent(intent);
 	    
-	    tabHost.addTab(spec);		
+	    tabHost.addTab(spec);
+	    
+	    // Well, this is definitely one way to get to the tab height.. :D
+	    tabHost.getTabWidget().getChildAt(tabHost.getTabWidget().getChildCount() - 1).getLayoutParams().height = 35;
 	}
 	
 }
