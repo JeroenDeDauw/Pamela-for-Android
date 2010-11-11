@@ -38,6 +38,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 public class MacList extends ListActivity {
 	
@@ -56,6 +57,11 @@ public class MacList extends ListActivity {
     
     protected void showList() {
     	setListAdapter(new ArrayAdapter<String>(this, R.layout.macaddress, this.getMacs()));
+    }
+    
+    protected void refreshList() {
+    	showList();
+    	Toast.makeText(this, "@string/listrefreshed", Toast.LENGTH_LONG);
     }
     
     protected List<String> getMacs() {
@@ -102,11 +108,14 @@ public class MacList extends ListActivity {
         // Handle item selection
         switch (item.getItemId()) {
 	        case R.id.btnRefresh:
-	        	this.showList();
+	        	this.refreshList();
+	        	return true;
+	        case R.id.btnSearch:
+	        	
 	        	return true;
 	        case R.id.btnAdd:
 	        	
-	        	return true;
+	        	return true;	        	
 	        case R.id.btnEdit:
 	        	
 	        	return true;

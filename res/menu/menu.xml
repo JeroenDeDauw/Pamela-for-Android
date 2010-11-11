@@ -21,10 +21,10 @@
 
 <menu
   xmlns:android="http://schemas.android.com/apk/res/android">
-<item android:title="@string/refresh" android:id="@+id/btnRefresh"></item>
-<group android:id="@+id/grpControls">
-<item android:id="@+id/btnEdit" android:title="@string/edit"></item><item android:id="@+id/btnAdd" android:title="@string/add">
-</item><item android:id="@+id/btnRemove" android:title="@string/remove"></item>
+<item android:title="@string/refresh" android:id="@+id/btnRefresh" android:icon="@drawable/ic_menu_refresh"></item>
+<item android:title="@string/search" android:id="@+id/btnSearch" android:icon="@drawable/ic_menu_search"></item>
 
-</group>
+<item android:id="@+id/btnEdit" android:title="@string/edit" android:icon="@drawable/ic_menu_preferences"></item>
+<item android:id="@+id/btnAdd" android:title="@string/add" android:icon="@drawable/ic_menu_add"></item>
+<item android:id="@+id/btnRemove" android:title="@string/remove" android:icon="@drawable/ic_menu_close_clear_cancel"></item>
 </menu>
