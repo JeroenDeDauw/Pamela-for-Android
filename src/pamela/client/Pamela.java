@@ -1,48 +1,68 @@
 package pamela.client;
 
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
+import org.apache.http.util.EntityUtils;
+
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class Pamela extends ListActivity {
-	
-	// ListView that will hold our items references back to main.xml.
-	ListView lstTest;
-	
-	// Array Adapter that will hold our ArrayList and display the items on the ListView.
-	PamelaAdapter arrayAdapter;
 	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        
         this.showList();
     }
     
     protected void showList() {
-        setListAdapter(new ArrayAdapter<String>(this, R.layout.main, this.getListItems()));
-
-        ListView lv = getListView();
-        lv.setTextFilterEnabled(true);
-
-        lv.setOnItemClickListener(new OnItemClickListener() {
-          public void onItemClick(AdapterView<?> parent, View view,
-              int position, long id) {
-            // When clicked, show a toast with the TextView text
-            Toast.makeText(getApplicationContext(), ((TextView) view).getText(),
-                Toast.LENGTH_SHORT).show();
-          }
-        });    	
+    	setListAdapter(new ArrayAdapter<String>(this, R.layout.main, this.getMacs()));
+    }
+    
+    protected List<String> getMacs() {
+        HttpParams httpParams = new BasicHttpParams();
+        HttpConnectionParams.setConnectionTimeout(httpParams, 10000);
+        HttpConnectionParams.setSoTimeout(httpParams, 10000);
+        DefaultHttpClient httpClient = new DefaultHttpClient(httpParams);
+    	
+        String json = "";
+        
+        try {
+			HttpResponse response = httpClient.execute(new HttpGet(new URI("http://www.0x20.be/pam/macs")));
+			json = EntityUtils.toString(response.getEntity());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		ArrayList<String> macs = new ArrayList<String>();
+		
+		int i = 0;
+		
+		for(String part : json.split("\""))
+		{
+			i++;
+			
+			// These will be the macs.
+			if ( i % 2 == 0 ) {
+				macs.add(part);
+			}
+		}
+		
+		return (List<String>)macs;
     }
     
     @Override
@@ -62,10 +82,6 @@ public class Pamela extends ListActivity {
         default:
             return super.onOptionsItemSelected(item);
         }
-    }    
-    
-    protected String[] getListItems() {
-    	return new String[] { Double.toString(Math.random()), Double.toString(Math.random()), Double.toString(Math.random()) };
-    }
+    }   
     
 }
