@@ -19,6 +19,13 @@
 
 package pamela.client;
 
-public class MacListView {
+import android.content.Context;
+import android.widget.ListView;
+
+public class MacListView extends ListView {
+
+	public MacListView(Context context) {
+		super(context);
+	}
 
 }
