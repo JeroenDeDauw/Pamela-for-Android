@@ -19,18 +19,33 @@
 
 package pamela.client;
 
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
+import org.apache.http.util.EntityUtils;
+
 import android.app.AlertDialog;
 import android.app.TabActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.Toast;
 
 public class Pamela extends TabActivity {
 
+	protected ArrayList<ListView> macLists = new ArrayList<ListView>();
+	
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.main);
@@ -39,13 +54,11 @@ public class Pamela extends TabActivity {
 	    addTab( "hsbxl", "http://hackerspace.be/pam/macs" );
 	}
 	
-	protected void addTab( String name, String url ) 
-	{
+	protected void addTab( String name, String url ) {
 		addTab( name, url, R.drawable.icon );
 	}
 	
-	protected void addTab( String name, String url, int icon )
-	{
+	protected void addTab( String name, String url, int icon ) {
 	    TabHost tabHost = getTabHost();  // The activity TabHost
 
 	    Intent intent = new Intent();
@@ -61,8 +74,6 @@ public class Pamela extends TabActivity {
 	    
 	    // Well, this is definitely one way to get to the tab height.. :D
 	    tabHost.getTabWidget().getChildAt(tabHost.getTabWidget().getChildCount() - 1).getLayoutParams().height = 35;
-	    
-	    
 	}
 	
     @Override
@@ -70,8 +81,7 @@ public class Pamela extends TabActivity {
         // Handle item selection
         switch (item.getItemId()) {
 	        case R.id.btnRefresh:
-	        	//this.refreshList();
-	        	Toast.makeText(this, R.string.listrefreshed, Toast.LENGTH_SHORT).show();
+	        	Pamela.this.refreshList( (ListView)getTabHost().getTabContentView().getFocusedChild() );
 	        	return true;
 	        case R.id.btnSearch:
 	        	this.onSearchRequested();
@@ -104,5 +114,52 @@ public class Pamela extends TabActivity {
         }
     }   
  	
-	
+    protected void showList( ListView macList ) {
+    	macList.setAdapter(new ArrayAdapter<String>(this, R.layout.macaddress, this.getMacs()));
+    }
+    
+    protected void refreshList( ListView macList ) {
+    	refreshList( macList, true );
+    }
+    
+    protected void refreshList( ListView macList, boolean notify ) {
+    	showList( macList );
+    	
+    	if ( notify ) {
+    		Toast.makeText(this, R.string.listrefreshed, Toast.LENGTH_SHORT).show();
+    	}
+    }
+    
+    protected List<String> getMacs( String url ) {
+        HttpParams httpParams = new BasicHttpParams();
+        HttpConnectionParams.setConnectionTimeout(httpParams, 10000);
+        HttpConnectionParams.setSoTimeout(httpParams, 10000);
+        DefaultHttpClient httpClient = new DefaultHttpClient(httpParams);
+    	
+        String json = "";
+        
+        try {
+			HttpResponse response = httpClient.execute(new HttpGet(new URI(url)));
+			json = EntityUtils.toString(response.getEntity());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		ArrayList<String> macs = new ArrayList<String>();
+		
+		int i = 0;
+		
+		for(String part : json.split("\"")) {
+			i++;
+			
+			// These will be the macs.
+			// Assuming no lamefag put's an " in his name :)
+			if ( i % 2 == 0 ) {
+				macs.add(part);
+			}
+		}
+		
+		return (List<String>)macs;
+    }
+    
 }
