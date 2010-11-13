@@ -66,7 +66,6 @@ public class MacList extends ListActivity {
     protected void refreshList()
     {
     	showList();
-    	Toast.makeText(this, R.string.listrefreshed, Toast.LENGTH_SHORT).show();
     }
     
     protected List<String> getMacs() {
@@ -107,45 +106,7 @@ public class MacList extends ListActivity {
         inflater.inflate(R.menu.menu, menu);
         return true;
     }   
-    
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-	        case R.id.btnRefresh:
-	        	this.refreshList();
-	        	return true;
-	        case R.id.btnSearch:
-	        	this.onSearchRequested();
-	        	return true;
-	        case R.id.btnAdd:
-	        	
-	        	return true;	        	
-	        case R.id.btnEdit:
-	        	
-	        	return true;
-	        case R.id.btnRemove:
-	        	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	        	builder.setMessage(R.string.confirmremove)
-	        	       .setCancelable(false)
-	        	       .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-	        	           public void onClick(DialogInterface dialog, int id) {
-	        	        	   //MacList.this.
-	        	           }
-	        	       })
-	        	       .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-	        	           public void onClick(DialogInterface dialog, int id) {
-	        	                dialog.cancel();
-	        	           }
-	        	       });
-	        	AlertDialog alert = builder.create();
-	        	alert.show();
-	        	return true;	        	
-	        default:
-	            return super.onOptionsItemSelected(item);
-        }
-    }   
-    
+       
     @Override
     public boolean onSearchRequested() {
     	// TODO Auto-generated method stub

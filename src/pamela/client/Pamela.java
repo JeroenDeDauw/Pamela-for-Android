@@ -19,11 +19,15 @@
 
 package pamela.client;
 
+import android.app.AlertDialog;
 import android.app.TabActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ViewGroup;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.TabHost;
+import android.widget.Toast;
 
 public class Pamela extends TabActivity {
 
@@ -57,6 +61,48 @@ public class Pamela extends TabActivity {
 	    
 	    // Well, this is definitely one way to get to the tab height.. :D
 	    tabHost.getTabWidget().getChildAt(tabHost.getTabWidget().getChildCount() - 1).getLayoutParams().height = 35;
+	    
+	    
 	}
+	
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+	        case R.id.btnRefresh:
+	        	//this.refreshList();
+	        	Toast.makeText(this, R.string.listrefreshed, Toast.LENGTH_SHORT).show();
+	        	return true;
+	        case R.id.btnSearch:
+	        	this.onSearchRequested();
+	        	return true;
+	        case R.id.btnAdd:
+	        	
+	        	return true;	        	
+	        case R.id.btnEdit:
+	        	
+	        	return true;
+	        case R.id.btnRemove:
+	        	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	        	builder.setMessage(R.string.confirmremove)
+	        	       .setCancelable(false)
+	        	       .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+	        	           public void onClick(DialogInterface dialog, int id) {
+	        	        	   //getTabHost().getTabContentView().removeView(getTabHost().getTabContentView().getFocusedChild());
+	        	           }
+	        	       })
+	        	       .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+	        	           public void onClick(DialogInterface dialog, int id) {
+	        	                dialog.cancel();
+	        	           }
+	        	       });
+	        	AlertDialog alert = builder.create();
+	        	alert.show();
+	        	return true;	        	
+	        default:
+	            return super.onOptionsItemSelected(item);
+        }
+    }   
+ 	
 	
 }
