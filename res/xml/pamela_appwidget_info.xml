@@ -19,21 +19,10 @@
     along with this code.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
-<resources>
-    <string name="app_name">Pamela client</string>
-    <string name="add">Add</string>
-    <string name="edit">Edit</string>
-    <string name="remove">Remove</string>
-<string name="refresh">Refresh</string>
-<string name="url">URL</string>
-<string name="name">Name</string>
-<string name="listrefreshed">List refreshed</string>
-<string name="search">Search</string>
-<string name="confirmremove">Are you sure you want to remove this list?</string>
-<string name="yes">Yes</string>
-<string name="no">No</string>
-
-<string name="notImplementedYet">Not implemented yet...</string>
-<string name="save">Save</string>
-<string name="whitespaceurl">http://0x20.be/pam/macs</string>
-</resources>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="294dp"
+    android:minHeight="72dp"
+    android:updatePeriodMillis="9001"
+    android:initialLayout="@layout/appwidget"
+    android:configure="pamela.client.PamelaWidgetConfigure" >
+</appwidget-provider>

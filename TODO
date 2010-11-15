@@ -8,3 +8,4 @@ For more info see http://0x20.be/Pamela_for_Android
 * Add persistent storage of the mac list options
 * Implement search
 * Add local mapping and flagging of macs/names
+* Show # of list items

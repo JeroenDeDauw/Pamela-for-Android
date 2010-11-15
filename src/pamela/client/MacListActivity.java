@@ -44,7 +44,7 @@ import android.widget.Toast;
 
 public class MacListActivity extends ListActivity {
 	
-	protected String url;
+	protected PamelaWebservice pamela;
 	
     /** Called when the activity is first created. */
     @Override
@@ -52,7 +52,7 @@ public class MacListActivity extends ListActivity {
        super.onCreate(savedInstanceState);
        Intent intent = getIntent();
        Bundle extras = intent.getExtras();
-       this.url = extras.getString("url");
+       this.pamela = new PamelaWebservice( extras.getString("url") );
        this.showList();
     }
     
@@ -111,7 +111,7 @@ public class MacListActivity extends ListActivity {
     }
     
     protected void showList() {
-    	setListAdapter(new ArrayAdapter<String>(this, R.layout.macaddress, this.getMacs()));
+    	setListAdapter(new ArrayAdapter<String>(this, R.layout.macaddress, this.pamela.getMacs()));
     }
     
     protected void refreshList() {
@@ -125,37 +125,5 @@ public class MacListActivity extends ListActivity {
     		Toast.makeText(this, R.string.listrefreshed, Toast.LENGTH_SHORT).show();
     	}
     }
-    
-    protected List<String> getMacs() {
-        HttpParams httpParams = new BasicHttpParams();
-        HttpConnectionParams.setConnectionTimeout(httpParams, 10000);
-        HttpConnectionParams.setSoTimeout(httpParams, 10000);
-        DefaultHttpClient httpClient = new DefaultHttpClient(httpParams);
-    	
-        String json = "";
-        
-        try {
-			HttpResponse response = httpClient.execute(new HttpGet(new URI(url)));
-			json = EntityUtils.toString(response.getEntity());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		ArrayList<String> macs = new ArrayList<String>();
-		
-		int i = 0;
-		
-		for(String part : json.split("\"")) {
-			i++;
-			
-			// These will be the macs.
-			// Assuming no lamefag put's an " in his name :)
-			if ( i % 2 == 0 ) {
-				macs.add(part);
-			}
-		}
-		
-		return (List<String>)macs;
-    }    
     
 }
