@@ -1,0 +1,10 @@
+This is the TODO file of Pamela for Android.
+For more info see http://0x20.be/Pamela_for_Android
+
+== TODOs ==
+
+* Add a widget so that a mac list can be put on the desktop
+* Implement the menu options to add, remove and modify mac lists
+* Add persistent storage of the mac list options
+* Implement search
+* Add local mapping and flagging of macs/names
