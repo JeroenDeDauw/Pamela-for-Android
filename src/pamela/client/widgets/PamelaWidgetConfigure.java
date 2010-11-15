@@ -117,10 +117,10 @@ public class PamelaWidgetConfigure extends Activity {
         }
     }
     
-    static void deleteTitlePref(Context context, int appWidgetId) {
+    static void deleteUrlPref(Context context, int appWidgetId) {
     }
 
-    static void loadAllTitlePrefs(Context context, ArrayList<Integer> appWidgetIds,
+    static void loadAllUrlPrefs(Context context, ArrayList<Integer> appWidgetIds,
             ArrayList<String> texts) {
     }
 

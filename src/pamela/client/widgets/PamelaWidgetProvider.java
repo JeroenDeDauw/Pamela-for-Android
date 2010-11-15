@@ -47,7 +47,7 @@ public class PamelaWidgetProvider extends AppWidgetProvider {
         // When the user deletes the widget, delete the preference associated with it.
         final int N = appWidgetIds.length;
         for (int i=0; i<N; i++) {
-            PamelaWidgetConfigure.deleteTitlePref(context, appWidgetIds[i]);
+            PamelaWidgetConfigure.deleteUrlPref(context, appWidgetIds[i]);
         }
     }
 
@@ -59,7 +59,7 @@ public class PamelaWidgetProvider extends AppWidgetProvider {
         // be called after boot if there is a widget instance for this provider.
         PackageManager pm = context.getPackageManager();
         pm.setComponentEnabledSetting(
-                new ComponentName("com.example.android.apis", ".appwidget.ExampleBroadcastReceiver"),
+                new ComponentName("pamela.client.widgets", ".appwidget.PamelaBroadcastReceiver"),
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP);
     }
@@ -70,7 +70,7 @@ public class PamelaWidgetProvider extends AppWidgetProvider {
         // TIME_CHANGED broadcasts.
         PackageManager pm = context.getPackageManager();
         pm.setComponentEnabledSetting(
-                new ComponentName("com.example.android.apis", ".appwidget.ExampleBroadcastReceiver"),
+                new ComponentName("pamela.client.widgets", ".appwidget.PamelaBroadcastReceiver"),
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP);
     }
