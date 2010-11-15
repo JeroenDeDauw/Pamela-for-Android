@@ -46,6 +46,7 @@ public final class R {
         public static final int listrefreshed=0x7f050007;
         public static final int name=0x7f050006;
         public static final int no=0x7f05000b;
+        public static final int notImplementedYet=0x7f05000c;
         public static final int refresh=0x7f050004;
         public static final int remove=0x7f050003;
         public static final int search=0x7f050008;
