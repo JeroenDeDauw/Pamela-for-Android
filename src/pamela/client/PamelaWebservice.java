@@ -36,7 +36,7 @@ public class PamelaWebservice {
 	protected String url;
 	
 	public PamelaWebservice( String url ) {
-		
+		this.url = url;
 	}
 	
     protected List<String> getMacs() {
