@@ -2,9 +2,10 @@ This file contains the release notes of Pamela for Android.
 For more info see http://0x20.be/Pamela_for_Android
 
 == Version 0.3 ==
-2010-11-1x
+2010-11-15
 
 * Fixed tab height.
+* Added additional options to the menu (although they don't work yet).
 
 == Version 0.2 ==
 2010-11-11
