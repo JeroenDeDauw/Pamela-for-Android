@@ -35,7 +35,6 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -54,12 +53,109 @@ public class MacListActivity extends ListActivity {
        Intent intent = getIntent();
        Bundle extras = intent.getExtras();
        this.url = extras.getString("url");
+       this.showList();
     }
-       
+    
     @Override
-    public boolean onSearchRequested() {
-    	// TODO Auto-generated method stub
-    	return super.onSearchRequested();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }     
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+	        case R.id.btnRefresh:
+	        	this.refreshList();
+	        	return true;
+	        case R.id.btnSearch:
+	        	// TODO
+	        	showNotImplemented();	        	
+	        	//this.onSearchRequested();
+	        	return true;
+	        case R.id.btnAdd:
+	        	// TODO
+	        	showNotImplemented();
+	        	return true;	        	
+	        case R.id.btnEdit:
+	        	// TODO
+	        	showNotImplemented();
+	        	return true;
+	        case R.id.btnRemove:
+	        	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	        	builder.setMessage(R.string.confirmremove)
+	        	       .setCancelable(false)
+	        	       .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+	        	           public void onClick(DialogInterface dialog, int id) {
+	        	        	   // TODO
+	        	        	   MacListActivity.this.showNotImplemented();
+	        	           }
+	        	       })
+	        	       .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+	        	           public void onClick(DialogInterface dialog, int id) {
+	        	                dialog.cancel();
+	        	           }
+	        	       });
+	        	AlertDialog alert = builder.create();
+	        	alert.show();
+	        	return true;	        	
+	        default:
+	            return super.onOptionsItemSelected(item);
+        }
     }
+    
+    protected void showNotImplemented() {
+    	Toast.makeText(this, R.string.notImplementedYet, Toast.LENGTH_SHORT).show();
+    }
+    
+    protected void showList() {
+    	setListAdapter(new ArrayAdapter<String>(this, R.layout.macaddress, this.getMacs()));
+    }
+    
+    protected void refreshList() {
+    	refreshList( true );
+    }
+    
+    protected void refreshList( boolean notify ) {
+    	showList();
+    	
+    	if ( notify ) {
+    		Toast.makeText(this, R.string.listrefreshed, Toast.LENGTH_SHORT).show();
+    	}
+    }
+    
+    protected List<String> getMacs() {
+        HttpParams httpParams = new BasicHttpParams();
+        HttpConnectionParams.setConnectionTimeout(httpParams, 10000);
+        HttpConnectionParams.setSoTimeout(httpParams, 10000);
+        DefaultHttpClient httpClient = new DefaultHttpClient(httpParams);
+    	
+        String json = "";
+        
+        try {
+			HttpResponse response = httpClient.execute(new HttpGet(new URI(url)));
+			json = EntityUtils.toString(response.getEntity());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		ArrayList<String> macs = new ArrayList<String>();
+		
+		int i = 0;
+		
+		for(String part : json.split("\"")) {
+			i++;
+			
+			// These will be the macs.
+			// Assuming no lamefag put's an " in his name :)
+			if ( i % 2 == 0 ) {
+				macs.add(part);
+			}
+		}
+		
+		return (List<String>)macs;
+    }    
     
 }
