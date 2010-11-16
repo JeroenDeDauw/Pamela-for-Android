@@ -59,7 +59,7 @@ public class PamelaWidgetProvider extends AppWidgetProvider {
         // be called after boot if there is a widget instance for this provider.
         PackageManager pm = context.getPackageManager();
         pm.setComponentEnabledSetting(
-                new ComponentName("pamela.client.widgets", ".appwidget.PamelaBroadcastReceiver"),
+                new ComponentName("pamela.client.widgets", ".PamelaBroadcastReceiver"),
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP);
     }
@@ -70,7 +70,7 @@ public class PamelaWidgetProvider extends AppWidgetProvider {
         // TIME_CHANGED broadcasts.
         PackageManager pm = context.getPackageManager();
         pm.setComponentEnabledSetting(
-                new ComponentName("pamela.client.widgets", ".appwidget.PamelaBroadcastReceiver"),
+                new ComponentName("pamela.client.widgets", ".PamelaBroadcastReceiver"),
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP);
     }

@@ -47,19 +47,24 @@
                   android:label="@string/app_name">
         </activity>
         
-		<activity android:name=".PamelaWidgetConfigure">
-		    <intent-filter>
-		        <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
-		    </intent-filter>
-		</activity>        
-        
-		<receiver android:name="PamelaWidgetProvider" >
+		<receiver android:name=".widgets.PamelaWidgetProvider">
 		    <intent-filter>
 		        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
 		    </intent-filter>
 		    <meta-data android:name="android.appwidget.provider"
 		               android:resource="@xml/pamela_appwidget_info" />
 		</receiver>        
+        
+		<activity android:name=".widgets.PamelaWidgetConfigure">
+		    <intent-filter>
+		        <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+		    </intent-filter>
+		</activity>         
+        
+        <receiver android:name=".widgets.PamelaBroadcastReceiver">
+            <intent-filter>
+            </intent-filter>
+        </receiver>    
         
 		<meta-data android:name="android.app.default_searchable"
 			android:value=".MacList" />

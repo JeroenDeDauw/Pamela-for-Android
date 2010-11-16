@@ -24,5 +24,5 @@
     android:minHeight="72dp"
     android:updatePeriodMillis="9001"
     android:initialLayout="@layout/appwidget"
-    android:configure="pamela.client.PamelaWidgetConfigure" >
+    android:configure="pamela.client.widgets.PamelaWidgetConfigure" >
 </appwidget-provider>
