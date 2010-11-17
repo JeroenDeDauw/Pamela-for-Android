@@ -84,6 +84,7 @@ public class PamelaWidgetProvider extends AppWidgetProvider {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.appwidget);
 
         // TODO
+        views.setTextViewText(R.id.lblWidgetContent, "IN YOUR WIDGET");
         
         // Tell the widget manager
         appWidgetManager.updateAppWidget(appWidgetId, views);

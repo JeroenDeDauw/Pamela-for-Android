@@ -19,6 +19,12 @@
     along with this code.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" />
+    android:layout_height="fill_parent">
+    <TextView
+    	android:id="@+id/lblWidgetContent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/name" />    
+</LinearLayout>
