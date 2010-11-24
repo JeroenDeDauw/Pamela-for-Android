@@ -19,12 +19,14 @@
 
 package pamela.client;
 
+import java.util.ArrayList;
+
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TabHost;
 
-public class Pamela extends TabActivity {
+public class Pamela extends AwesomeTabActivity {
 
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -50,9 +52,7 @@ public class Pamela extends TabActivity {
 	    	.setIndicator(name)
 	    	.setContent(intent);
 	    
-	    tabHost.addTab(spec);
-	    
-	    tabHost.getTabWidget().getChildAt(tabHost.getTabWidget().getChildCount() - 1).getLayoutParams().height = 35;
+	    super.addTabSpec(spec);
 	}
 	
 }

@@ -40,6 +40,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
+import android.widget.TabHost;
 import android.widget.Toast;
 
 public class MacListActivity extends ListActivity {
@@ -81,7 +83,7 @@ public class MacListActivity extends ListActivity {
 	        	return true;	        	
 	        case R.id.btnEdit:
 	        	// TODO
-	        	showNotImplemented();
+	        	//showNotImplemented();
 	        	return true;
 	        case R.id.btnRemove:
 	        	AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -89,8 +91,7 @@ public class MacListActivity extends ListActivity {
 	        	       .setCancelable(false)
 	        	       .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 	        	           public void onClick(DialogInterface dialog, int id) {
-	        	        	   // TODO
-	        	        	   MacListActivity.this.showNotImplemented();
+	        	        	   ((Pamela)getParent()).removeCurrentTab(); 
 	        	           }
 	        	       })
 	        	       .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
