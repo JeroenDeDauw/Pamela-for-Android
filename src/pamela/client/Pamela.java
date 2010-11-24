@@ -28,6 +28,8 @@ import android.widget.TabHost;
 
 public class Pamela extends AwesomeTabActivity {
 
+	protected static int tabId = 0;
+	
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.main);
@@ -45,7 +47,11 @@ public class Pamela extends AwesomeTabActivity {
 
 	    Intent intent = new Intent();
 	    intent.setClass(this, MacListActivity.class);
+	    
 	    intent.putExtra("url", url);
+	    intent.putExtra("id", tabId);
+	    
+	    tabId++;
 	    
 	    // Initialize a TabSpec for each tab and add it to the TabHost
 	    TabHost.TabSpec spec = tabHost.newTabSpec(name)

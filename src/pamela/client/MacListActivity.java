@@ -47,14 +47,19 @@ import android.widget.Toast;
 public class MacListActivity extends ListActivity {
 	
 	protected PamelaWebservice pamela;
+	protected int tabId;
 	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
+       
        Intent intent = getIntent();
        Bundle extras = intent.getExtras();
+       
        this.pamela = new PamelaWebservice( extras.getString("url") );
+       this.tabId = extras.getInt("id");
+       
        this.showList();
     }
     
@@ -79,9 +84,11 @@ public class MacListActivity extends ListActivity {
 	        	return true;
 	        case R.id.btnAdd:
 	        	// TODO
+	        	//startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData()));
 	        	showNotImplemented();
 	        	return true;	        	
 	        case R.id.btnEdit:
+	        	startActivityForResult(new Intent(Intent.ACTION_EDIT), tabId);
 	        	// TODO
 	        	//showNotImplemented();
 	        	return true;

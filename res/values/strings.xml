@@ -36,4 +36,6 @@
 <string name="notImplementedYet">Not implemented yet...</string>
 <string name="save">Save</string>
 <string name="whitespaceurl">http://0x20.be/pam/macs</string>
+<string name="name_cannot_be_mpty">The name can not be empty</string>
+<string name="url_must_be_valid">The url must be valid</string>
 </resources>
