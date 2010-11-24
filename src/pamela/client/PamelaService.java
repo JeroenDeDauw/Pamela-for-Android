@@ -25,6 +25,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -53,6 +56,13 @@ public class PamelaService extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Set the layout for this activity.
+        setContentView(R.layout.pamelaservice);
+
+        // The text vies for the pamela service, identified by its ID in the XML file.
+        txtName = (EditText) findViewById(R.id.txtName);
+        txtUrl = (EditText) findViewById(R.id.txtUrl);        
+        
         final Intent intent = getIntent();
 
         // Do some setup based on the action being performed.
@@ -62,6 +72,10 @@ public class PamelaService extends Activity {
         	state = STATE_EDIT;
             uri = intent.getData();
         } else if (Intent.ACTION_INSERT.equals(action)) {
+        	// FIXME: not working...
+        	txtName.setText(R.string.default_service_name);
+        	txtUrl.setText(R.string.default_service_url);
+        	
             // Requested to insert: set that state, and create a new entry
             // in the container.
         	state = STATE_INSERT;
@@ -86,22 +100,24 @@ public class PamelaService extends Activity {
             finish();
             return;
         }
-        
-        // Set the layout for this activity.
-        setContentView(R.layout.pamelaservice);
-
-        // The text vies for the pamela service, identified by its ID in the XML file.
-        txtName = (EditText) findViewById(R.id.txtName);
-        txtUrl = (EditText) findViewById(R.id.txtUrl);
 
         // If an instance of this activity had previously stopped, we can
         // get the original text it started with.
         if (savedInstanceState != null) {
         	originalName = savedInstanceState.getString(ORIGINAL_NAME);
         	originalUrl = savedInstanceState.getString(ORIGINAL_URL);
-        }        
-
+        }
+        
+        Button button = (Button)findViewById(R.id.btnSave);
+        button.setOnClickListener(onSaveButtonClicked);
     }
+    
+	// Create an anonymous implementation of OnClickListener
+	private OnClickListener onSaveButtonClicked = new OnClickListener() {
+	    public void onClick(View v) {
+	    	saveService();
+	    }
+	};
     
     @Override
     protected void onSaveInstanceState(Bundle outState) {

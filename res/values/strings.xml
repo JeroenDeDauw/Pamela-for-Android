@@ -20,8 +20,8 @@
 -->
 
 <resources>
-    <string name="app_name">Pamela client</string>
-    <string name="add">Add</string>
+    <string name="app_name">Pamela</string>
+    <string name="app_desc">Pretty Amazing Member Enabled Localization Application</string><string name="add">Add</string>
     <string name="edit">Edit</string>
     <string name="remove">Remove</string>
 <string name="refresh">Refresh</string>
@@ -38,4 +38,7 @@
 <string name="whitespaceurl">http://0x20.be/pam/macs</string>
 <string name="name_cannot_be_mpty">The name can not be empty</string>
 <string name="url_must_be_valid">The url must be valid</string>
+
+<string name="default_service_name"></string>
+<string name="default_service_url">http://www.</string>
 </resources>

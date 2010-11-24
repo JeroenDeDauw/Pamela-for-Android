@@ -79,7 +79,7 @@ public class MacListActivity extends ListActivity {
 	        	return true;
 	        case R.id.btnSearch:
 	        	// TODO
-	        	showNotImplemented();	        	
+	        	showNotImplemented();
 	        	//this.onSearchRequested();
 	        	return true;
 	        case R.id.btnAdd:

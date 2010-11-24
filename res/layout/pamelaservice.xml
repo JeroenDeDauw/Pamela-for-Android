@@ -41,6 +41,12 @@
         android:id="@+id/txtUrl"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/> 
-        
-           
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtUrl"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="10dip"
+        android:text="@string/save" />
 </LinearLayout>
