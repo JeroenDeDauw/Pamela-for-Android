@@ -20,6 +20,9 @@ public class PamelaServiceProvider extends ContentProvider {
     private static final String SERVICES_TABLE_NAME = "services";
     private static final String DEVICES_TABLE_NAME = "devices";
 	
+    private static final int SERVICES = 1;
+    private static final int SERVICE_ID = 2;
+    
     private static final UriMatcher uriMatcher;
     
     /**
@@ -33,13 +36,22 @@ public class PamelaServiceProvider extends ContentProvider {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL("CREATE TABLE " + NOTES_TABLE_NAME + " ("
-                    + NoteColumns._ID + " INTEGER PRIMARY KEY,"
-                    + NoteColumns.TITLE + " TEXT,"
-                    + NoteColumns.NOTE + " TEXT,"
-                    + NoteColumns.CREATED_DATE + " INTEGER,"
-                    + NoteColumns.MODIFIED_DATE + " INTEGER"
+            db.execSQL("CREATE TABLE " + SERVICES_TABLE_NAME + " ("
+                    + PamelaColumns._ID + " INTEGER PRIMARY KEY,"
+                    + PamelaColumns.NAME + " TEXT,"
+                    + PamelaColumns.URL + " TEXT,"
+                    + PamelaColumns.CREATED_DATE + " INTEGER,"
+                    + PamelaColumns.MODIFIED_DATE + " INTEGER"
                     + ");");
+            /*
+            db.execSQL("CREATE TABLE " + DEVICES_TABLE_NAME + " ("
+                    + PamelaColumns._ID + " INTEGER PRIMARY KEY,"
+                    + PamelaColumns.MAC + " TEXT,"
+                    + PamelaColumns.NAME + " TEXT,"
+                    + PamelaColumns.CREATED_DATE + " INTEGER,"
+                    + PamelaColumns.MODIFIED_DATE + " INTEGER"
+                    + ");"); 
+                    */           
         }
 
         @Override
@@ -103,13 +115,12 @@ public class PamelaServiceProvider extends ContentProvider {
     
     @Override
     public String getType(Uri uri) {
-        switch (sUriMatcher.match(uri)) {
-        case NOTES:
-        case LIVE_FOLDER_NOTES:
-            return NoteColumns.CONTENT_TYPE;
+        switch (uriMatcher.match(uri)) {
+        case SERVICES:
+            return PamelaColumns.CONTENT_TYPE;
 
-        case NOTE_ID:
-            return NoteColumns.CONTENT_ITEM_TYPE;
+        case SERVICE_ID:
+            return PamelaColumns.CONTENT_ITEM_TYPE;
 
         default:
             throw new IllegalArgumentException("Unknown URI " + uri);
