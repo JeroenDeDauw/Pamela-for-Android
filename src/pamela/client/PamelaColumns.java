@@ -16,9 +16,14 @@ public final class PamelaColumns implements BaseColumns {
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/notes");
 
     /**
-     * The MIME type of {@link #CONTENT_URI} providing a directory of notes.
+     * The MIME type of {@link #CONTENT_URI} providing a directory of services.
      */
-    public static final String CONTENT_TYPE = "pamela.client";
+    public static final String CONTENT_TYPE = "pamela.client.dit";
+    
+    /**
+     * The MIME type of {@link #CONTENT_URI} providing a single service.
+     */
+    public static final String CONTENT_ITEM_TYPE = "pamela.client.item";    
 	
     /**
      * The timestamp for when the note was created

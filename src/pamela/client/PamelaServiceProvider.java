@@ -79,29 +79,17 @@ public class PamelaServiceProvider extends ContentProvider {
         qb.setTables(DEVICES_TABLE_NAME);
 
         switch (uriMatcher.match(uri)) {
-	        case NOTES:
+	        case SERVICES:
 	            qb.setProjectionMap(sNotesProjectionMap);
 	            break;
 	
-	        case NOTE_ID:
+	        case SERVICE_ID:
 	            qb.setProjectionMap(sNotesProjectionMap);
 	            qb.appendWhere(NoteColumns._ID + "=" + uri.getPathSegments().get(1));
 	            break;
 	
-	        case LIVE_FOLDER_NOTES:
-	            qb.setProjectionMap(sLiveFolderProjectionMap);
-	            break;
-	
 	        default:
 	            throw new IllegalArgumentException("Unknown URI " + uri);
-        }
-
-        // If no sort order is specified use the default
-        String orderBy;
-        if (TextUtils.isEmpty(sortOrder)) {
-            orderBy = NoteColumns.DEFAULT_SORT_ORDER;
-        } else {
-            orderBy = sortOrder;
         }
 
         // Get the database and run the query
