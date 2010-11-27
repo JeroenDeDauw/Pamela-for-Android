@@ -19,9 +19,6 @@
 
 package pamela.client;
 
-import java.util.ArrayList;
-
-import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TabHost;
