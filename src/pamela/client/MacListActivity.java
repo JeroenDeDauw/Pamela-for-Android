@@ -19,29 +19,16 @@
 
 package pamela.client;
 
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
-import org.apache.http.util.EntityUtils;
-
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
-import android.widget.TabHost;
 import android.widget.Toast;
 
 public class MacListActivity extends ListActivity {
@@ -55,6 +42,11 @@ public class MacListActivity extends ListActivity {
        super.onCreate(savedInstanceState);
        
        Intent intent = getIntent();
+       
+       if (intent.getData() == null) {
+           intent.setData(PamelaColumns.CONTENT_URI);
+       }
+       
        Bundle extras = intent.getExtras();
        
        this.pamela = new PamelaWebservice( extras.getString("url") );
@@ -84,8 +76,7 @@ public class MacListActivity extends ListActivity {
 	        	return true;
 	        case R.id.btnAdd:
 	        	// TODO
-	        	startActivityForResult(new Intent(Intent.ACTION_INSERT), tabId);
-	        	//startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData()));
+	        	startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData()));
 	        	showNotImplemented();
 	        	return true;	        	
 	        case R.id.btnEdit:
