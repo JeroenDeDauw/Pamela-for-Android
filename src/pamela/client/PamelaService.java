@@ -20,6 +20,7 @@
 package pamela.client;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
@@ -60,8 +61,8 @@ public class PamelaService extends Activity {
         setContentView(R.layout.pamelaservice);
 
         // The text vies for the pamela service, identified by its ID in the XML file.
-        txtName = (EditText) findViewById(R.id.txtName);
-        txtUrl = (EditText) findViewById(R.id.txtUrl);        
+        txtName = (EditText) findViewById(R.id.txtServiceName);
+        txtUrl = (EditText) findViewById(R.id.txtServiceUrl);        
         
         final Intent intent = getIntent();
 
@@ -73,19 +74,22 @@ public class PamelaService extends Activity {
             uri = intent.getData();
         } else if (Intent.ACTION_INSERT.equals(action)) {
         	// FIXME: not working...
-        	txtName.setText(R.string.default_service_name);
+        	//((EditText)findViewById(R.id.txtServiceName)).setText(R.string.default_service_name);
+        	txtName.setText("oHai there"); // R.string.default_service_name
         	txtUrl.setText(R.string.default_service_url);
         	
             // Requested to insert: set that state, and create a new entry
             // in the container.
         	state = STATE_INSERT;
-        	uri = getContentResolver().insert(intent.getData(), null);
+        	ContentResolver cr = getContentResolver(); 
+        	Uri data = intent.getData();
+        	uri = cr.insert(data, null);
 
             // If we were unable to create a new note, then just finish
             // this activity.  A RESULT_CANCELED will be sent back to the
             // original activity if they requested a result.
             if (uri == null) {
-                Log.e(TAG, "Failed to insert new note into " + getIntent().getData());
+                Log.e(TAG, "Failed to insert new service into " + getIntent().getData());
                 finish();
                 return;
             }
@@ -108,7 +112,7 @@ public class PamelaService extends Activity {
         	originalUrl = savedInstanceState.getString(ORIGINAL_URL);
         }
         
-        Button button = (Button)findViewById(R.id.btnSave);
+        Button button = (Button)findViewById(R.id.btnSaveService);
         button.setOnClickListener(onSaveButtonClicked);
     }
     
@@ -128,7 +132,7 @@ public class PamelaService extends Activity {
     }
     
     
-    private  final void saveService() {
+    private final void saveService() {
         // Get out updates into the provider.
         ContentValues values = new ContentValues();
 

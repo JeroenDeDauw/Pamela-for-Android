@@ -84,6 +84,7 @@ public class MacListActivity extends ListActivity {
 	        	return true;
 	        case R.id.btnAdd:
 	        	// TODO
+	        	startActivityForResult(new Intent(Intent.ACTION_INSERT), tabId);
 	        	//startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData()));
 	        	showNotImplemented();
 	        	return true;	        	

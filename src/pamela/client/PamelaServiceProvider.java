@@ -14,13 +14,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
-import android.provider.LiveFolders;
 import android.text.TextUtils;
-import android.util.Log;
 
 public class PamelaServiceProvider extends ContentProvider {
-
-	private static final String TAG = "PamelaServiceProvider";
 
     private static final String DATABASE_NAME = "pamela.db";
     private static final int DATABASE_VERSION = 2;
@@ -30,7 +26,7 @@ public class PamelaServiceProvider extends ContentProvider {
     private static final int SERVICES = 1;
     private static final int SERVICE_ID = 2;
     
-    private static HashMap<String, String> notesProjectionMap;
+    private static HashMap<String, String> servicesProjectionMap;
     
     private static final UriMatcher uriMatcher;
     
@@ -65,10 +61,6 @@ public class PamelaServiceProvider extends ContentProvider {
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
-                    + newVersion + ", which will destroy all old data");
-            db.execSQL("DROP TABLE IF EXISTS notes");
-            onCreate(db);
         }
     }
     
@@ -89,11 +81,11 @@ public class PamelaServiceProvider extends ContentProvider {
 
         switch (uriMatcher.match(uri)) {
 	        case SERVICES:
-	            qb.setProjectionMap(notesProjectionMap);
+	            qb.setProjectionMap(servicesProjectionMap);
 	            break;
 	
 	        case SERVICE_ID:
-	            qb.setProjectionMap(notesProjectionMap);
+	            qb.setProjectionMap(servicesProjectionMap);
 	            qb.appendWhere(PamelaColumns._ID + "=" + uri.getPathSegments().get(1));
 	            break;
 	
@@ -162,9 +154,9 @@ public class PamelaServiceProvider extends ContentProvider {
         long rowId = db.insert(SERVICES_TABLE_NAME, PamelaColumns.NAME, values);
         
         if (rowId > 0) {
-            Uri noteUri = ContentUris.withAppendedId(PamelaColumns.CONTENT_URI, rowId);
-            getContext().getContentResolver().notifyChange(noteUri, null);
-            return noteUri;
+            Uri serviceUri = ContentUris.withAppendedId(PamelaColumns.CONTENT_URI, rowId);
+            getContext().getContentResolver().notifyChange(serviceUri, null);
+            return serviceUri;
         }
 
         throw new SQLException("Failed to insert row into " + uri);
@@ -180,8 +172,8 @@ public class PamelaServiceProvider extends ContentProvider {
             break;
 
         case SERVICE_ID:
-            String noteId = uri.getPathSegments().get(1);
-            count = db.delete(SERVICES_TABLE_NAME, PamelaColumns._ID + "=" + noteId
+            String serviceId = uri.getPathSegments().get(1);
+            count = db.delete(SERVICES_TABLE_NAME, PamelaColumns._ID + "=" + serviceId
                     + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
             break;
 
@@ -204,8 +196,8 @@ public class PamelaServiceProvider extends ContentProvider {
             break;
 
         case SERVICE_ID:
-            String noteId = uri.getPathSegments().get(1);
-            count = db.update(SERVICES_TABLE_NAME, values, PamelaColumns._ID + "=" + noteId
+            String serviceId = uri.getPathSegments().get(1);
+            count = db.update(SERVICES_TABLE_NAME, values, PamelaColumns._ID + "=" + serviceId
                     + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
             break;
 
@@ -219,15 +211,15 @@ public class PamelaServiceProvider extends ContentProvider {
 
     static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-        uriMatcher.addURI(PamelaColumns.AUTHORITY, "notes", SERVICES);
-        uriMatcher.addURI(PamelaColumns.AUTHORITY, "notes/#", SERVICE_ID);
+        uriMatcher.addURI(PamelaColumns.AUTHORITY, "services", SERVICES);
+        uriMatcher.addURI(PamelaColumns.AUTHORITY, "services/#", SERVICE_ID);
 
-        notesProjectionMap = new HashMap<String, String>();
-        notesProjectionMap.put(PamelaColumns._ID, PamelaColumns._ID);
-        notesProjectionMap.put(PamelaColumns.NAME, PamelaColumns.NAME);
-        notesProjectionMap.put(PamelaColumns.URL, PamelaColumns.URL);
-        notesProjectionMap.put(PamelaColumns.CREATED_DATE, PamelaColumns.CREATED_DATE);
-        notesProjectionMap.put(PamelaColumns.MODIFIED_DATE, PamelaColumns.MODIFIED_DATE);
+        servicesProjectionMap = new HashMap<String, String>();
+        servicesProjectionMap.put(PamelaColumns._ID, PamelaColumns._ID);
+        servicesProjectionMap.put(PamelaColumns.NAME, PamelaColumns.NAME);
+        servicesProjectionMap.put(PamelaColumns.URL, PamelaColumns.URL);
+        servicesProjectionMap.put(PamelaColumns.CREATED_DATE, PamelaColumns.CREATED_DATE);
+        servicesProjectionMap.put(PamelaColumns.MODIFIED_DATE, PamelaColumns.MODIFIED_DATE);
     }    
     
 }

@@ -24,25 +24,25 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
     <TextView
-    	android:id="@+id/lblName"
+    	android:id="@+id/lblServiceName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/name" />
     <EditText
-        android:id="@+id/txtName"
+        android:id="@+id/txtServiceName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>     
     <TextView
-    	android:id="@+id/lblUrl"
+    	android:id="@+id/lblServiceUrl"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/url" />
     <EditText
-        android:id="@+id/txtUrl"
+        android:id="@+id/txtServiceUrl"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/> 
     <Button
-        android:id="@+id/btnSave"
+        android:id="@+id/btnSaveService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtUrl"

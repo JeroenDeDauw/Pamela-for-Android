@@ -13,7 +13,7 @@ public final class PamelaColumns implements BaseColumns {
     /**
      * The content:// style URL for this table
      */
-    public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/notes");
+    public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/services");
 
     /**
      * The MIME type of {@link #CONTENT_URI} providing a directory of services.
@@ -49,5 +49,4 @@ public final class PamelaColumns implements BaseColumns {
      */
     public static final String URL = "url";
 	
-
 }
