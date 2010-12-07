@@ -105,14 +105,14 @@ public class PamelaServiceProvider extends ContentProvider {
     @Override
     public String getType(Uri uri) {
         switch (uriMatcher.match(uri)) {
-        case SERVICES:
-            return PamelaColumns.CONTENT_TYPE;
-
-        case SERVICE_ID:
-            return PamelaColumns.CONTENT_ITEM_TYPE;
-
-        default:
-            throw new IllegalArgumentException("Unknown URI " + uri);
+	        case SERVICES:
+	            return PamelaColumns.CONTENT_TYPE;
+	
+	        case SERVICE_ID:
+	            return PamelaColumns.CONTENT_ITEM_TYPE;
+	
+	        default:
+	            throw new IllegalArgumentException("Unknown URI " + uri);
         }
     }
 
