@@ -17,12 +17,17 @@
     along with this code.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+<<<<<<< HEAD:src/pamela/client2/MacListActivity.java
 package pamela.client2;
+=======
+package pamela.client;
+>>>>>>> 34c071c8adc9ba170170bad810ab482975956e68:src/pamela/client/MacListActivity.java
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -41,6 +46,11 @@ public class MacListActivity extends ListActivity {
        super.onCreate(savedInstanceState);
        
        Intent intent = getIntent();
+       
+       if (intent.getData() == null) {
+           intent.setData(PamelaColumns.CONTENT_URI);
+       }
+       
        Bundle extras = intent.getExtras();
        
        this.pamela = new PamelaWebservice( extras.getString("url") );
@@ -70,9 +80,8 @@ public class MacListActivity extends ListActivity {
 	        	return true;
 	        case R.id.btnAdd:
 	        	// TODO
-	        	startActivityForResult(new Intent(Intent.ACTION_INSERT), tabId);
-	        	//startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData()));
-	        	showNotImplemented();
+	        	startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData()));
+	        	//showNotImplemented();
 	        	return true;	        	
 	        case R.id.btnEdit:
 	        	startActivityForResult(new Intent(Intent.ACTION_EDIT), tabId);
