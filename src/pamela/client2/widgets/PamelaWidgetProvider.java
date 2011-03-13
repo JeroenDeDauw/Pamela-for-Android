@@ -17,17 +17,15 @@
     along with this code.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package pamela.client.widgets;
+package pamela.client2.widgets;
 
-import pamela.client.PamelaWebservice;
-import pamela.client.R;
+import pamela.client2.PamelaWebservice;
+import pamela.client2.R;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.os.SystemClock;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 public class PamelaWidgetProvider extends AppWidgetProvider {
@@ -59,7 +57,7 @@ public class PamelaWidgetProvider extends AppWidgetProvider {
         // be called after boot if there is a widget instance for this provider.
         PackageManager pm = context.getPackageManager();
         pm.setComponentEnabledSetting(
-                new ComponentName("pamela.client.widgets", ".PamelaBroadcastReceiver"),
+                new ComponentName("pamela.client2.widgets", ".PamelaBroadcastReceiver"),
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP);
     }
@@ -70,7 +68,7 @@ public class PamelaWidgetProvider extends AppWidgetProvider {
         // TIME_CHANGED broadcasts.
         PackageManager pm = context.getPackageManager();
         pm.setComponentEnabledSetting(
-                new ComponentName("pamela.client.widgets", ".PamelaBroadcastReceiver"),
+                new ComponentName("pamela.client2.widgets", ".PamelaBroadcastReceiver"),
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP);
     }

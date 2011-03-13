@@ -17,7 +17,7 @@
     along with this code.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package pamela.client;
+package pamela.client2;
 
 import android.app.Activity;
 import android.content.ContentResolver;

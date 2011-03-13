@@ -1,4 +1,4 @@
-package pamela.client;
+package pamela.client2;
 
 import java.util.ArrayList;
 

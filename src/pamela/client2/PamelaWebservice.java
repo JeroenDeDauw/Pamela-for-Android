@@ -17,7 +17,7 @@
     along with this code.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package pamela.client;
+package pamela.client2;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -48,7 +48,9 @@ public class PamelaWebservice {
         String json = "";
         
         try {
-			HttpResponse response = httpClient.execute(new HttpGet(new URI(url)));
+        	URI uri = new URI(url);
+        	HttpGet httpGet = new HttpGet(uri);
+			HttpResponse response = httpClient.execute(httpGet);
 			json = EntityUtils.toString(response.getEntity());
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,4 +1,4 @@
-package pamela.client;
+package pamela.client2;
 
 import android.net.Uri;
 import android.provider.BaseColumns;
@@ -8,7 +8,7 @@ import android.provider.BaseColumns;
  */
 public final class PamelaColumns implements BaseColumns {
 
-	public static final String AUTHORITY = "pamela.client";
+	public static final String AUTHORITY = "pamela.client2";
 	
     /**
      * The content:// style URL for this table
@@ -18,12 +18,12 @@ public final class PamelaColumns implements BaseColumns {
     /**
      * The MIME type of {@link #CONTENT_URI} providing a directory of services.
      */
-    public static final String CONTENT_TYPE = "pamela.client.dit";
+    public static final String CONTENT_TYPE = "pamela.client2.dit";
     
     /**
      * The MIME type of {@link #CONTENT_URI} providing a single service.
      */
-    public static final String CONTENT_ITEM_TYPE = "pamela.client.item";    
+    public static final String CONTENT_ITEM_TYPE = "pamela.client2.item";    
 	
     /**
      * The timestamp for when the note was created

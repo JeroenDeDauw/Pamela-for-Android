@@ -17,7 +17,7 @@
     along with this code.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package pamela.client.widgets;
+package pamela.client2.widgets;
 
 import java.util.ArrayList;
 

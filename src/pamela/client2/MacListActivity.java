@@ -17,19 +17,7 @@
     along with this code.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package pamela.client;
-
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
-import org.apache.http.util.EntityUtils;
+package pamela.client2;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -40,8 +28,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
-import android.widget.TabHost;
 import android.widget.Toast;
 
 public class MacListActivity extends ListActivity {

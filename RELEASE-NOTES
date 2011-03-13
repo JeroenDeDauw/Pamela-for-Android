@@ -2,9 +2,10 @@ This file contains the release notes of Pamela for Android.
 For more info see http://0x20.be/Pamela_for_Android
 
 == Version 0.4 ==
-2010-11-xx
+2011-03-13
 
-* 
+* Min API level to 4, android 1.6.
+* Changed app name to pamela.client2 with new keystore as the original password was lost.
 
 == Version 0.3 ==
 2010-11-15

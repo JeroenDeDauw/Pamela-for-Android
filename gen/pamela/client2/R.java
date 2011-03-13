@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package pamela.client;
+package pamela.client2;
 
 public final class R {
     public static final class attr {

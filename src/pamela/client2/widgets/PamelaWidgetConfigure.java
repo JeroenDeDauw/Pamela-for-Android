@@ -17,11 +17,11 @@
     along with this code.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package pamela.client.widgets;
+package pamela.client2.widgets;
 
 import java.util.ArrayList;
 
-import pamela.client.R;
+import pamela.client2.R;
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
@@ -33,7 +33,7 @@ import android.widget.EditText;
 
 public class PamelaWidgetConfigure extends Activity {
 
-    private static final String PREFS_NAME = "pamela.client.widgets.PamelaWidgetProvider";
+    private static final String PREFS_NAME = "pamela.client2.widgets.PamelaWidgetProvider";
     private static final String PREF_PREFIX_KEY = "pamela_";
 	
 	private int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
